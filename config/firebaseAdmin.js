@@ -1,6 +1,9 @@
-// config/firebaseAdmin.js
 const admin = require("firebase-admin");
-const serviceAccount = require("../next-tech-blog-5223e-firebase-adminsdk-fbsvc-3ed19ae412.json"); // replace with your file name
+require("dotenv").config();
+
+const serviceAccount = JSON.parse(
+  Buffer.from(process.env.FIREBASE_ADMIN_BASE64, "base64").toString("utf8")
+);
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
